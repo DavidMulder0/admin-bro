@@ -62,7 +62,7 @@ export class Filter {
     this.filters = Object.keys(normalized).reduce((memo, path) => {
       memo[path] = {
         path,
-        property: this.resource.property(path),
+        property: this.resource.property(path.split('.')[0]),
         value: normalized[path],
       }
 

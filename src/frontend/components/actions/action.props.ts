@@ -29,4 +29,9 @@ export type ActionProps = {
    * Sets tag in a header of an action. It is a function taking tag as an argument
    */
   setTag?: Dispatch<SetStateAction<string>>;
+
+  /**
+   * Potential custom data
+   */
+  data?: any;
 }

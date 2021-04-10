@@ -19,6 +19,7 @@ const api = new ApiClient()
 
 const RecordAction: React.FC = () => {
   const [record, setRecord] = useState<RecordJSON>()
+  const [data, setData] = useState<any>()
   const [loading, setLoading] = useState(true)
   const match = useRouteMatch<RecordActionParams>()
   const addNotice = useNotice()
@@ -34,6 +35,7 @@ const RecordAction: React.FC = () => {
     api.recordAction(match.params).then((response) => {
       setLoading(false)
       setRecord(response.data.record)
+      setData(response.data)
     }).catch((error) => {
       addNotice({
         message: translateMessage('errorFetchingRecord', resourceId),
@@ -106,6 +108,7 @@ const RecordAction: React.FC = () => {
         action={action}
         resource={resource}
         record={record}
+        data={data}
       />
     </Wrapper>
   )

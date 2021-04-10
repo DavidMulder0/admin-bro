@@ -26,13 +26,16 @@ export const SearchAction: Action<SearchActionResponse> = {
    * @implements ActionHandler
    */
   handler: async (request, response, data) => {
-    const { currentAdmin, resource } = data
+    const { currentAdmin, resource, hookFilters } = data
 
     const queryString = request.params && request.params.query
     const decorated = resource.decorate()
     const titlePropertyName = decorated.titleProperty().name()
 
-    const filters = queryString ? { [titlePropertyName]: queryString } : {}
+    const filters: any = { ... hookFilters }; 
+    if (queryString) {
+      filters.titlePropertyName = queryString;
+    }
     const filter = new Filter(filters, resource)
 
     const sortBy = decorated.options?.sort?.sortBy || titlePropertyName
