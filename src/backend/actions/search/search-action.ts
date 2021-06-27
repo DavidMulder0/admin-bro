@@ -34,7 +34,7 @@ export const SearchAction: Action<SearchActionResponse> = {
 
     const filters: any = { ... hookFilters }; 
     if (queryString) {
-      filters.titlePropertyName = queryString;
+      filters[titlePropertyName] = queryString;
     }
     const filter = new Filter(filters, resource)
 
