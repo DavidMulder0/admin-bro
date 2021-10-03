@@ -30,6 +30,7 @@ const BulkAction: React.FC = () => {
   const match = useRouteMatch<MatchParams>()
   const [records, setRecords] = useState<Array<RecordJSON>>([])
   const [loading, setLoading] = useState(false)
+  const [data, setData] = useState<any>()
   const { translateMessage } = useTranslation()
   const addNotice = useNotice()
   const location = useLocation()
@@ -40,6 +41,7 @@ const BulkAction: React.FC = () => {
   const fetchRecords = (): Promise<void> => {
     const recordIdsString = new URLSearchParams(location.search).get('recordIds')
     const recordIds = recordIdsString ? recordIdsString.split(',') : []
+    
     setLoading(true)
 
     return api.bulkAction({
@@ -47,6 +49,7 @@ const BulkAction: React.FC = () => {
     }).then((response) => {
       setLoading(false)
       setRecords(response.data.records)
+      setData(response.data)
     }).catch((error) => {
       setLoading(false)
       addNotice({
