@@ -18,8 +18,10 @@ import mergeRecordResponse from '../../hooks/use-record/merge-record-response'
 const api = new ApiClient()
 
 const RecordAction: React.FC = () => {
-  const [record, setRecord] = useState<RecordJSON>()
-  const [data, setData] = useState<any>()
+  const [data, setData] = useState<{
+    record: RecordJSON,
+    [key: string]: any
+  }>()
   const [loading, setLoading] = useState(true)
   const match = useRouteMatch<RecordActionParams>()
   const addNotice = useNotice()
@@ -28,13 +30,12 @@ const RecordAction: React.FC = () => {
   const { actionName, recordId, resourceId } = match.params
   const resource = useResource(resourceId)
 
-  const action = record && record.recordActions.find(r => r.name === actionName)
+  const action = data?.record && data.record.recordActions.find(r => r.name === actionName)
 
   const fetchRecord = (): void => {
     setLoading(true)
     api.recordAction(match.params).then((response) => {
       setLoading(false)
-      setRecord(response.data.record)
       setData(response.data)
     }).catch((error) => {
       addNotice({
@@ -51,7 +52,10 @@ const RecordAction: React.FC = () => {
 
   const handleActionPerformed = useCallback((oldRecord: RecordJSON, response: ActionResponse) => {
     if (response.record) {
-      setRecord(mergeRecordResponse(oldRecord, response as RecordActionResponse))
+      setData({
+        ...data,
+        record: mergeRecordResponse(oldRecord, response as RecordActionResponse)
+      })
     } else {
       fetchRecord()
     }
@@ -67,7 +71,7 @@ const RecordAction: React.FC = () => {
   // Alternative approach would be to setRecord(undefined) before the fetch, but it is async and
   // we cannot be sure that the component wont be rendered (it will be at least once) with the
   // wrong data.
-  const hasDifferentRecord = record && record.id.toString() !== recordId
+  const hasDifferentRecord = data?.record && data.record.id.toString() !== recordId
 
   if (loading || hasDifferentRecord) {
     const actionFromResource = resource.actions.find(r => r.name === actionName)
@@ -78,7 +82,7 @@ const RecordAction: React.FC = () => {
     return (<NoActionError resourceId={resourceId} actionName={actionName} />)
   }
 
-  if (!record) {
+  if (!data?.record) {
     return (<NoRecordError resourceId={resourceId} recordId={recordId} />)
   }
 
@@ -88,7 +92,7 @@ const RecordAction: React.FC = () => {
         <BaseActionComponent
           action={action as ActionJSON}
           resource={resource}
-          record={record}
+          record={data.record}
         />
       </DrawerPortal>
     )
@@ -99,15 +103,15 @@ const RecordAction: React.FC = () => {
       <ActionHeader
         resource={resource}
         action={action}
-        record={record}
+        record={data.record}
         actionPerformed={(response: ActionResponse): void => (
-          handleActionPerformed(record, response)
+          handleActionPerformed(data.record, response)
         )}
       />
       <BaseActionComponent
         action={action}
         resource={resource}
-        record={record}
+        record={data.record}
         data={data}
       />
     </Wrapper>

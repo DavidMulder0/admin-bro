@@ -1,5 +1,8 @@
 import { CurrentAdmin } from '../../current-admin.interface';
-export declare type UseCurrentAdminResponse = [CurrentAdmin | null, (currentAdmin: CurrentAdmin | null) => CurrentAdmin | {}];
+export declare type UseCurrentAdminResponse = [
+    CurrentAdmin | null,
+    (currentAdmin: CurrentAdmin | null) => CurrentAdmin | {}
+];
 /**
  * @classdesc
  * Hook which allows you to get and set currentAdmin

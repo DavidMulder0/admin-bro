@@ -74,6 +74,7 @@ export declare type BasePropertyProps = {
 };
 export declare type BasePropertyComponentProps = Omit<BasePropertyProps, 'property'> & {
     property: BasePropertyJSON;
+    data: any;
 };
 export declare type BasePropertyPropsExtended = BasePropertyProps & {
     ItemComponent: typeof React.Component;

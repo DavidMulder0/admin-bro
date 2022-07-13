@@ -15,7 +15,7 @@ declare class Page extends React.Component<Props, State> {
     componentDidMount(): void;
     render(): ReactNode;
 }
-declare const _default: import("react-redux").ConnectedComponent<typeof Page, Pick<React.ClassAttributes<Page> & PropsFromState & RouteComponentProps<{
+declare const _default: import("react-redux").ConnectedComponent<typeof Page, import("react-redux").Omit<React.ClassAttributes<Page> & PropsFromState & RouteComponentProps<{
     pageName: string;
-}, import("react-router").StaticContext, unknown>, "match" | "ref" | "key" | "location" | "history" | "staticContext">>;
+}, import("react-router").StaticContext, unknown>, "pages">>;
 export default _default;

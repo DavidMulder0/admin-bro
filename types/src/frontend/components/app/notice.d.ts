@@ -26,5 +26,5 @@ declare type NoticeBoxDispatchFromState = {
     drop: (noticeId: string) => void;
     notifyProgress: NotifyProgress;
 };
-declare const ConnectedNoticeBox: import("react-redux").ConnectedComponent<React.FC<NoticeBoxPropsFromState & NoticeBoxDispatchFromState>, Pick<NoticeBoxPropsFromState & NoticeBoxDispatchFromState, never>>;
+declare const ConnectedNoticeBox: import("react-redux").ConnectedComponent<React.FC<NoticeBoxPropsFromState & NoticeBoxDispatchFromState>, import("react-redux").Omit<NoticeBoxPropsFromState & NoticeBoxDispatchFromState, "drop" | "notices" | "notifyProgress">>;
 export { ConnectedNoticeBox as default, ConnectedNoticeBox as NoticeBox, };

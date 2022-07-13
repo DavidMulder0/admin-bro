@@ -13,11 +13,16 @@ declare class Filter extends React.PureComponent<CombinedProps> {
     }>>;
     render(): ReactNode;
 }
-declare const _default: React.ForwardRefExoticComponent<Pick<import("../base-property-props").BasePropertyProps & {
+declare const _default: React.ForwardRefExoticComponent<{
     filter: any;
-    onChange: import("../base-property-props").OnPropertyChange;
+    key?: React.Key | null | undefined;
     record: undefined;
-} & ThemeProps<DefaultTheme> & React.RefAttributes<Filter>, "filter" | "ref" | "key" | "onChange" | "property" | "resource" | "record" | "where"> & {
+    ref?: React.Ref<Filter> | undefined;
+    property: import("../../..").PropertyJSON;
+    resource: import("../../..").ResourceJSON;
+    onChange: import("../base-property-props").OnPropertyChange;
+    where: import("../../..").PropertyPlace;
+} & {
     theme?: DefaultTheme | undefined;
 }>;
 export default _default;

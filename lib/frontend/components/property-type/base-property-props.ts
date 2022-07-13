@@ -77,6 +77,7 @@ export type BasePropertyProps = {
 
 export type BasePropertyComponentProps = Omit<BasePropertyProps, 'property'> & {
   property: BasePropertyJSON;
+  data: any;
 }
 
 export type BasePropertyPropsExtended = BasePropertyProps & {

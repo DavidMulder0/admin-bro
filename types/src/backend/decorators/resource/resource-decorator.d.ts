@@ -90,7 +90,7 @@ declare class ResourceDecorator {
     getProperties({ where, max }: {
         where?: PropertyPlace;
         max?: number;
-    }): Array<PropertyDecorator>;
+    }, currentAdmin: CurrentAdmin | undefined): Array<PropertyDecorator>;
     /**
      * Returns all the properties with corresponding subProperties in one object.
      */

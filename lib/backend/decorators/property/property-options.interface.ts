@@ -1,3 +1,4 @@
+import { CurrentAdmin } from '../../../current-admin.interface';
 import { PropertyType } from '../../adapters/property/base-property'
 
 /**
@@ -9,10 +10,10 @@ export default interface PropertyOptions {
    * you can verify which view in particular should be hidden/shown.
    */
   isVisible?: boolean | {
-    show?: boolean;
-    list?: boolean;
-    edit?: boolean;
-    filter?: boolean;
+    show?: boolean | ((CurrentAdmin) => boolean);
+    list?: boolean | ((CurrentAdmin) => boolean);
+    edit?: boolean | ((CurrentAdmin) => boolean);
+    filter?: boolean | ((CurrentAdmin) => boolean);
   };
   /**
    * List of possible overridden components for given property.

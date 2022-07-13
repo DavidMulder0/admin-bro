@@ -147,7 +147,7 @@ class ResourceDecorator {
   getProperties({ where, max = 0 }: {
     where?: PropertyPlace;
     max?: number;
-  }): Array<PropertyDecorator> {
+  }, currentAdmin: CurrentAdmin | undefined): Array<PropertyDecorator> {
     const whereProperties = `${where}Properties` // like listProperties, viewProperties etc
     if (where && this.options[whereProperties] && this.options[whereProperties].length) {
       return this.options[whereProperties]
@@ -165,7 +165,7 @@ class ResourceDecorator {
     }
 
     const properties = Object.keys(this.properties)
-      .filter(key => !where || this.properties[key].isVisible(where))
+      .filter(key => !where || this.properties[key].isVisible(where, currentAdmin))
       .sort((key1, key2) => (
         this.properties[key1].position() > this.properties[key2].position()
           ? 1
@@ -313,7 +313,7 @@ class ResourceDecorator {
       }).map(property => property.toJSON('list')),
       editProperties: this.getProperties({
         where: 'edit',
-      }).map(property => property.toJSON('edit')),
+      }, currentAdmin).map(property => property.toJSON('edit')),
       showProperties: this.getProperties({
         where: 'show',
       }).map(property => property.toJSON('show')),

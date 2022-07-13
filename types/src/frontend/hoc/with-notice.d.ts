@@ -38,5 +38,5 @@ export declare type AddNoticeProps = {
  * @component
  * @subcategory HOC
  */
-declare const withNotice: (Component: any) => import("react-redux").ConnectedComponent<any, Pick<unknown, never>>;
+declare const withNotice: (Component: any) => import("react-redux").ConnectedComponent<any, import("react-redux").Omit<unknown, never>>;
 export { withNotice as default, withNotice, };

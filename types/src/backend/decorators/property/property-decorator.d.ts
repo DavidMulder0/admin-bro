@@ -4,6 +4,7 @@ import BaseResource from '../../adapters/resource/base-resource';
 import BaseProperty, { PropertyType } from '../../adapters/property/base-property';
 import ResourceDecorator from '../resource/resource-decorator';
 import { PropertyPlace, BasePropertyJSON } from '../../../frontend/interfaces';
+import { CurrentAdmin } from '../../../current-admin.interface';
 /**
  * Decorates property
  *
@@ -102,7 +103,7 @@ declare class PropertyDecorator {
      *
      * @param {'list' | 'edit' | 'show' | 'filter'} where
      */
-    isVisible(where: PropertyPlace): boolean;
+    isVisible(where: PropertyPlace, currentAdmin: CurrentAdmin | undefined): boolean;
     /**
      * Position of the field
      *

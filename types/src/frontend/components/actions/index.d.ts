@@ -11,5 +11,5 @@ export declare const actions: {
     edit: import("react").FC<import("./action.props").ActionProps>;
     show: import("react").FC<import("./action.props").ActionProps>;
     list: import("react").FC<import("./action.props").ActionProps>;
-    bulkDelete: import("react-redux").ConnectedComponent<any, Pick<unknown, never>>;
+    bulkDelete: import("react-redux").ConnectedComponent<any, import("react-redux").Omit<unknown, never>>;
 };

@@ -8,10 +8,10 @@ export default interface PropertyOptions {
      * you can verify which view in particular should be hidden/shown.
      */
     isVisible?: boolean | {
-        show?: boolean;
-        list?: boolean;
-        edit?: boolean;
-        filter?: boolean;
+        show?: boolean | ((CurrentAdmin: any) => boolean);
+        list?: boolean | ((CurrentAdmin: any) => boolean);
+        edit?: boolean | ((CurrentAdmin: any) => boolean);
+        filter?: boolean | ((CurrentAdmin: any) => boolean);
     };
     /**
      * List of possible overridden components for given property.

@@ -51,7 +51,7 @@ const types: Record<PropertyType, any> = {
  * @hideconstructor
  */
 const BasePropertyComponent: React.FC<BasePropertyComponentProps> = (props) => {
-  const { property: baseProperty, resource, record, filter, where, onChange } = props
+  const { property: baseProperty, resource, record, filter, where, onChange, data } = props
 
   const property: PropertyJSON = useMemo(() => ({
     ...baseProperty,
@@ -82,6 +82,7 @@ const BasePropertyComponent: React.FC<BasePropertyComponentProps> = (props) => {
             filter={filter}
             onChange={onChange}
             where={where}
+            data={data}
           />
         </Box>
       </ErrorBoundary>

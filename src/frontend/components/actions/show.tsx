@@ -14,7 +14,7 @@ import LayoutElementRenderer from './utils/layout-element-renderer'
  * @private
  */
 const Show: React.FC<ActionProps> = (props) => {
-  const { resource, record, action } = props
+  const { resource, record, action, data } = props
   const properties = resource.showProperties
 
   return (
@@ -35,6 +35,7 @@ const Show: React.FC<ActionProps> = (props) => {
           property={property}
           resource={resource}
           record={record}
+          data={data}
         />
       ))}
 

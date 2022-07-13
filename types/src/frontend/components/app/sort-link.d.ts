@@ -11,7 +11,7 @@ declare class SortLink extends React.PureComponent<SortLinkProps & RouteComponen
     isActive(): boolean;
     render(): ReactNode;
 }
-declare const _default: React.ComponentClass<Pick<SortLinkProps & RouteComponentProps<{}, import("react-router").StaticContext, unknown>, "direction" | "property" | "sortBy"> & {
-    wrappedComponentRef?: ((instance: SortLink | null) => void) | React.RefObject<SortLink> | null | undefined;
+declare const _default: React.ComponentClass<Pick<SortLinkProps & RouteComponentProps<{}, import("react-router").StaticContext, unknown>, keyof SortLinkProps> & {
+    wrappedComponentRef?: React.Ref<SortLink> | undefined;
 }, any> & import("react-router").WithRouterStatics<typeof SortLink>;
 export default _default;

@@ -1,10 +1,15 @@
 import React from 'react';
 import { DefaultTheme } from 'styled-components';
-import { EditPropertyProps } from '../base-property-props';
-declare type CombinedProps = EditPropertyProps & {
-    theme: DefaultTheme;
-};
-declare const _default: React.ForwardRefExoticComponent<Pick<React.PropsWithChildren<CombinedProps>, "filter" | "children" | "onChange" | "property" | "resource" | "record" | "where"> & {
+import { RecordJSON } from '../../../interfaces';
+declare const _default: React.ForwardRefExoticComponent<{
+    filter?: any;
+    record: RecordJSON;
+    children?: React.ReactNode;
+    property: import("../../../interfaces").PropertyJSON;
+    resource: import("../../../interfaces").ResourceJSON;
+    onChange: import("../base-property-props").OnPropertyChange;
+    where: import("../../../interfaces").PropertyPlace;
+} & {
     theme?: DefaultTheme | undefined;
 }>;
 export default _default;

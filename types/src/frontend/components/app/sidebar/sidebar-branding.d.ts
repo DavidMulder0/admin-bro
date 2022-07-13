@@ -6,6 +6,6 @@ declare type Props = {
 };
 export declare const StyledLogo: import("styled-components").StyledComponent<typeof Link, import("styled-components").DefaultTheme, {}, never>;
 declare const _default: React.ComponentType<Props & {
-    OriginalComponent?: React.FunctionComponent<Props> | React.ComponentClass<Props, any> | undefined;
+    OriginalComponent?: React.ComponentType<Props> | undefined;
 }>;
 export default _default;

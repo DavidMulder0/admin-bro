@@ -5,6 +5,7 @@ import BaseProperty, { PropertyType } from '../../adapters/property/base-propert
 import ResourceDecorator from '../resource/resource-decorator'
 import { PropertyPlace, BasePropertyJSON } from '../../../frontend/interfaces'
 import { overrideFromOptions } from './utils'
+import { CurrentAdmin } from '../../../current-admin.interface'
 
 /**
  * Decorates property
@@ -174,9 +175,14 @@ class PropertyDecorator {
    *
    * @param {'list' | 'edit' | 'show' | 'filter'} where
    */
-  isVisible(where: PropertyPlace): boolean {
+  isVisible(where: PropertyPlace, currentAdmin: CurrentAdmin | undefined): boolean {
     if (typeof this.options.isVisible === 'object' && this.options.isVisible !== 'null') {
-      return !!this.options.isVisible[where]
+      const val = this.options.isVisible[where];
+      if (typeof val === 'function') {
+        return val(currentAdmin);
+      } else {
+        return !!this.options.isVisible[where]
+      }
     }
     if (typeof this.options.isVisible === 'boolean') {
       return this.options.isVisible

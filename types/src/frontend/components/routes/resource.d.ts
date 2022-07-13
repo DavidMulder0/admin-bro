@@ -9,5 +9,5 @@ declare type Props = PropsFromState & RouteComponentProps<StringifiedBulk<Resour
 declare type StringifiedBulk<T> = Omit<T, 'recordsId'> & {
     recordsIds?: string;
 };
-declare const _default: import("react-redux").ConnectedComponent<React.FC<Props>, Pick<Props, "match" | "location" | "history" | "staticContext">>;
+declare const _default: import("react-redux").ConnectedComponent<React.FC<Props>, import("react-redux").Omit<Props, "resources">>;
 export default _default;
